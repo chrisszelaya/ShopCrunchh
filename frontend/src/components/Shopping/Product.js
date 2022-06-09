@@ -31,14 +31,14 @@ function Product(props) {
           m={2}
         />
         <Typography
-          style={{ fontFamily: "open sans", justifyContent: "center" , fontStyle:"bold"}}
+          style={{ fontFamily: "open sans", justifyContent: "center" , fontStyle:"bold", fontSize:'120%'}}
           variant="p"
         >
           {props.name}
         </Typography>
         <br />
         <br />
-        <Typography variant="p">
+        <Typography variant="p" style={{fontSize:"140%"}}>
           <strong>US: ${props.price}</strong>
         </Typography>
       </Card>
