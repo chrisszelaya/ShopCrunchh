@@ -207,7 +207,7 @@ const Homepage = () => {
       {!productSelected && (
         <Grid container justifyContent="center" marginTop="1rem">
           <Grid item xs={12}>
-            <Card sx={{ width: "15%", marginLeft: "42.5%" }}>
+            <Card sx={{ width: "15%", marginLeft: "42.5%" , backgroundcolor:"transparent"}}>
               <InputBase
                 sx={{ ml: 1, flex: 1, width: "81%" }}
                 placeholder="Search Products"
@@ -311,16 +311,22 @@ const Homepage = () => {
         </Grid>
       )}
       {productSelected && (
-        <Card container style={{display:"inline-block"}}>
-          <Card item style={{display:"inline-block"}}>
-            <img src={object.img} style={{maxBlockSize:"80%", margin:"auto"}}/>
+        <>
+          <Grid container spacing={3}>
+          <Card style={{backgroundColor:"transparent",height:"700px",width:"400px", }}>
+            <img src={object.img} style={{height:"700px",width:"400px",}}/>
           </Card>
-          <Card item style={{margin:"", height:"80%", width:"80%"}}>
-            <Stack>
-              <Typography variant="h6">{object.name}</Typography>
-              <Typography variant="h3">US: ${object.price}</Typography>
-              <Typography variant="h6">Likes:{object.likes}</Typography>
-              <Typography variant="h6">
+          <Card style={{backgroundColor:"transparent",height:"500px",width:"500px", textalign:"right", marginTop:"100px", marginbottom:"200px", marginLeft:"300px"}}>
+            <Stack style={{backgroundcolor:"transparent"}}>
+              <Typography style={{textAlign:"center", fontSize:"xx-large", fontstyle:"Times New Roman"}} variant="h1">{object.name}</Typography>
+              <Typography  style={{textAlign:"center"}}variant="p">{object.bio}</Typography>
+              <br>
+              </br>
+              <Typography  style={{textAlign:"center", fontSize:"x-large"}} variant="h3">US: ${object.price}</Typography>
+              <br></br>
+                <br></br>
+              <Typography  style={{textAlign:"center"}} variant="h6">Likes:{object.likes}</Typography>
+              <Typography  style={{textAlign:"center"}} variant="h6">
                 Do you like this product?
                 {!liked && (
                   <IconButton
@@ -343,19 +349,20 @@ const Homepage = () => {
                   </IconButton>
                 )}
               </Typography>
-              <Typography variant="p">{object.bio}</Typography>
-              <Button>Add to Cart</Button>
-              <Button>Buy Now</Button>
-              <Typography variant="h5">
+              <Typography style={{textAlign:"center"}} variant="h5">
                 Shipping Cost: ${object.shippingCost}
               </Typography>
-              <Typography variant="h5">
+              <Typography style={{textAlign:"center"}} variant="h5">
                 Estimated Delivery Time: {object.shippingTime}
               </Typography>
+              <Button>Add to Cart</Button>
+              <Button>Buy Now</Button>
               <Button onClick={backToShopping}>Go Back</Button>
             </Stack>
           </Card>
-        </Card>
+          </Grid>
+          </>
+          
       )}
     </>
   );
