@@ -1,18 +1,5 @@
 import Navbar from "../Navbar/Navbar";
-import {
-  Grid,
-  InputBase,
-  IconButton,
-  Card,
-  Stack,
-  Typography,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  speedDialIconClasses,
-} from "@mui/material";
+import { Grid,InputBase,IconButton,Card,Stack,Typography,Button,FormControl,InputLabel,Select,MenuItem,speedDialIconClasses} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useState, useRef } from "react";
 import Product from "./Product";
@@ -335,13 +322,46 @@ const Homepage = () => {
     setCategory(event.target.value);
   };
 
+  const toCart = (priceID, price, name) => {
+    if (!localStorage.getItem('priceIDs')) {
+      localStorage.setItem('priceIDs', String(priceID));
+    }
+    else {
+      let existing = localStorage.getItem('priceIDs');
+      existing = existing ? existing.split(',') : [];
+      existing.push(String(priceID));
+      localStorage.setItem('priceIDs', existing.toString());
+    }
+    //now add price of item here
+    if (!localStorage.getItem('price')) {
+      localStorage.setItem('price', String(price));
+    }
+    else {
+      let existing = localStorage.getItem('price');
+      existing = existing ? existing.split(',') : [];
+      existing.push(String(price));
+      localStorage.setItem('price', existing.toString());
+    }
+    //add item name here
+    if (!localStorage.getItem('name')) {
+      localStorage.setItem('name', String(name));
+    }
+    else {
+      let existing = localStorage.getItem('name');
+      existing = existing ? existing.split(',') : [];
+      existing.push(String(name));
+      localStorage.setItem('name', existing.toString());
+    }
+    window.alert("Successfully added to cart.");
+  }
+
   return (
     <>
       <Navbar ispage={[true, false, false]} />
       {!productSelected && (
         <Grid container justifyContent="center" marginTop="1rem">
           <Grid item xs={12}>
-            <Card sx={{ width: "15%", marginLeft: "42.5%" , backgroundcolor:"transparent"}}>
+            <Card sx={{ width: "15%", marginLeft: "42.5%", backgroundcolor: "transparent" }}>
               <InputBase
                 sx={{ ml: 1, flex: 1, width: "81%" }}
                 placeholder="Search Products"
@@ -447,22 +467,24 @@ const Homepage = () => {
         </Grid>
       )}
       {productSelected && (
-        <>
-          <Grid container spacing={3}>
-          <Card style={{backgroundColor:"transparent",height:"700px",width:"400px", }}>
-            <img src={object.img} style={{height:"700px",width:"400px",}}/>
-          </Card>
-          <Card style={{backgroundColor:"transparent",height:"500px",width:"500px", textalign:"right", marginTop:"100px", marginbottom:"200px", marginLeft:"300px"}}>
-            <Stack style={{backgroundcolor:"transparent"}}>
-              <Typography style={{textAlign:"center", fontSize:"xx-large", fontstyle:"Times New Roman"}} variant="h1">{object.name}</Typography>
-              <br></br>
-              <Typography  style={{textAlign:"center"}}variant="p">{object.bio}</Typography>
-              <br>
-              </br>
-              <Typography  style={{textAlign:"center", fontSize:"x-large"}} variant="h3">US: ${object.price}</Typography>
-                <br></br>
-              <Typography  style={{textAlign:"center"}} variant="h6">Likes:{object.likes}</Typography>
-              <Typography  style={{textAlign:"center"}} variant="h6">
+        	        <>	
+                  <Grid container spacing={3}>	
+                  <Grid item sx={6}>
+                  <Card style={{backgroundColor:"white",maxHeight:"80vh",width:"50vh", marginLeft:"100px", marginTop:"25px" }}>	
+                    <img src={object.img} style={{height:"700px",width:"400px"}}/>	
+                  </Card>	
+                  </Grid>
+                  <Card style={{backgroundColor:"white",height:"400px",width:"500px", textalign:"right", marginTop:"100px", marginbottom:"200px", marginLeft:"300px", paddingLeft:"20px", paddingTop:"20px", paddingRight:"20px"}}>	
+                    <Stack style={{backgroundcolor:"transparent"}}>	
+                      <Typography style={{textAlign:"center", fontSize:"xx-large", fontstyle:"Times New Roman"}} variant="h1">{object.name}</Typography>	
+                      <br></br>	
+                      <Typography  style={{textAlign:"center"}}variant="p">{object.bio}</Typography>	
+                      <br>	
+                      </br>	
+                      <Typography  style={{textAlign:"center", fontSize:"x-large"}} variant="h3">US: ${object.price}</Typography>	
+                        <br></br>	
+                      <Typography  style={{textAlign:"center"}} variant="h6">Likes:{object.likes}</Typography>	
+                      <Typography  style={{textAlign:"center"}} variant="h6">
                 Do you like this product?
                 {!liked && (
                   <IconButton
@@ -491,14 +513,12 @@ const Homepage = () => {
               <Typography style={{textAlign:"center"}} variant="h5">
                 Estimated Delivery Time: {object.shippingTime}
               </Typography>
-              <Button>Add to Cart</Button>
-              <Button>Buy Now</Button>
+              <Button variant="contained" onClick={() => toCart(object.priceID, object.name, object.price)}>Add to Cart</Button>
               <Button onClick={backToShopping}>Go Back</Button>
             </Stack>
-          </Card>
+            </Card>
           </Grid>
-          </>
-          
+        </>
       )}
     </>
   );

@@ -62,13 +62,11 @@ router.put("/delike", async (req, res, next) => {
 });
 
 //account
-
 router.post('/changenumber',async(req,res,next)=>{
     await updateDoc(doc(db, "Users", req.query.id), {
         phoneNumber: req.body.newNumber
     });
 })
-
 router.post('/changepassword',async(req,res,next)=>{
     await updateDoc(doc(db, "Users", req.query.id), {
         password: req.body.pass
