@@ -455,11 +455,11 @@ const Homepage = () => {
           <Card style={{backgroundColor:"transparent",height:"500px",width:"500px", textalign:"right", marginTop:"100px", marginbottom:"200px", marginLeft:"300px"}}>
             <Stack style={{backgroundcolor:"transparent"}}>
               <Typography style={{textAlign:"center", fontSize:"xx-large", fontstyle:"Times New Roman"}} variant="h1">{object.name}</Typography>
+              <br></br>
               <Typography  style={{textAlign:"center"}}variant="p">{object.bio}</Typography>
               <br>
               </br>
               <Typography  style={{textAlign:"center", fontSize:"x-large"}} variant="h3">US: ${object.price}</Typography>
-              <br></br>
                 <br></br>
               <Typography  style={{textAlign:"center"}} variant="h6">Likes:{object.likes}</Typography>
               <Typography  style={{textAlign:"center"}} variant="h6">
