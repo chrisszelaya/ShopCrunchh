@@ -311,11 +311,11 @@ const Homepage = () => {
         </Grid>
       )}
       {productSelected && (
-        <Grid container>
-          <Grid item>
-            <img src={object.img}/>
-          </Grid>
-          <Grid item>
+        <Card container style={{display:"inline-block"}}>
+          <Card item style={{display:"inline-block"}}>
+            <img src={object.img} style={{maxBlockSize:"80%", margin:"auto"}}/>
+          </Card>
+          <Card item style={{margin:"", height:"80%", width:"80%"}}>
             <Stack>
               <Typography variant="h6">{object.name}</Typography>
               <Typography variant="h3">US: ${object.price}</Typography>
@@ -354,8 +354,8 @@ const Homepage = () => {
               </Typography>
               <Button onClick={backToShopping}>Go Back</Button>
             </Stack>
-          </Grid>
-        </Grid>
+          </Card>
+        </Card>
       )}
     </>
   );
